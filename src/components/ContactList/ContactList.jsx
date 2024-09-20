@@ -1,7 +1,7 @@
 import React from "react"
-import Contact from "./Contact"
+import Contact from "../Contact/Contact"
 import css from "./ContactList.module.css"
-const ContactList = ({filterUser,onDeleteContact, id}) => {
+const ContactList = ({filterUser ,onDeleteContact}) => {
   return (
    <ul className={css.contactList}>
 {filterUser.map(contact => (

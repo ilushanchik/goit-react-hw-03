@@ -12,13 +12,19 @@ import {useEffect} from "react"
 function App() {
 
 const [filterContact,setFilterContact] = useState("")
-// const[users,setUsers] = useState(contacts)
 
-const [users, setUsers] = useState(() => {
-   const savedContacts = localStorage.getItem("contacts");
-   return savedContacts ? JSON.parse(savedContacts) : contacts;
-});
+const [users,setUsers] = useState(contacts)
+
+
+
+
+// const [users, setUsers] = useState(() => {
+//    const savedContacts = localStorage.getItem("contacts");
+//    console.log("Загруженные контакты из localStorage:", savedContacts);
+//    return savedContacts ? JSON.parse(savedContacts) : contacts;
+// });
 useEffect(() => {
+   console.log("Сохранение контактов в localStorage:", users);
    localStorage.setItem("contacts", JSON.stringify(users));
 }, [users]);
 
@@ -31,16 +37,18 @@ const handleFilter = (event) => {
 }
 
 const filterUser = users.filter(user => user.name.toLowerCase().includes(filterContact.toLowerCase()))
-
+console.log("Отфильтрованные пользователи:", filterUser);
 const addContact=(profile)=>{
    const finalContact ={
       ...profile,
       id: nanoid()
    }
+   console.log("Добавление контакта:", finalContact);
    setUsers([finalContact, ...users]);
 }
 
 const onDeleteContact = (contactId) => {
+   console.log("Удаление контакта с ID:", contactId);
    setUsers(users.filter(item => item.id !== contactId))
 }
   return (
@@ -59,7 +67,6 @@ const onDeleteContact = (contactId) => {
         <ContactList
          filterUser={filterUser}
          onDeleteContact={onDeleteContact}
-         id={users.id}
         />
     </Section>
      </div>

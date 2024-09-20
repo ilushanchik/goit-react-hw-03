@@ -1,5 +1,5 @@
 import React from "react"
-import css from "./ContactList.module.css"
+import css from "../ContactList/ContactList.module.css"
 import { IoPerson } from "react-icons/io5";
 import { FaPhoneAlt } from "react-icons/fa";
 
@@ -20,7 +20,7 @@ const Contact = ({name, number,onDeleteContact,id}) => {
    </div>
 </div>
 
-<button onClick={() => onDeleteContact(id) } className={css.deleteBtn}>Delete</button>
+<button onClick={() => onDeleteContact(id)} className={css.deleteBtn}>Delete</button>
 </div>
 
    </>
