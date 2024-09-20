@@ -13,20 +13,19 @@ function App() {
 
 const [filterContact,setFilterContact] = useState("")
 
-const [users,setUsers] = useState(contacts)
+// const [users,setUsers] = useState(contacts)
 
 
 
-
-// const [users, setUsers] = useState(() => {
-//    const savedContacts = localStorage.getItem("contacts");
-//    console.log("Загруженные контакты из localStorage:", savedContacts);
-//    return savedContacts ? JSON.parse(savedContacts) : contacts;
-// });
-useEffect(() => {
-   console.log("Сохранение контактов в localStorage:", users);
-   localStorage.setItem("contacts", JSON.stringify(users));
-}, [users]);
+const [users, setUsers] = useState(() => {
+   const savedContacts = localStorage.getItem("contacts");
+   return savedContacts ? JSON.parse(savedContacts) : contacts;
+ });
+ useEffect(() => {
+   if (users.length > 0) {
+     localStorage.setItem("contacts", JSON.stringify(users));
+   }
+ }, [users]);
 
 
 
